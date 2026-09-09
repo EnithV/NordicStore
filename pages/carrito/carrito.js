@@ -2,21 +2,21 @@ async function pintarCarrito() {
   var items = await obtenerCarrito();
   var box = document.getElementById("cart-box");
   if (!items.length) {
-    box.innerHTML = '<p class="mb-2">Tu carrito está vacío.</p><a class="btn btn-wood" href="../catalogo/catalogo.html">Ir al catálogo</a>';
+    box.innerHTML = '<p>Tu carrito está vacío.</p><a class="btn btn-primary" href="../../index.html">Ir al catálogo</a>';
     return;
   }
   var total = items.reduce(function (s, i) { return s + Number(i.price) * Number(i.quantity); }, 0);
   box.innerHTML = items.map(function (i, idx) {
-    return '<div class="d-flex gap-3 align-items-center cart-row py-3 border-bottom">' +
+    return '<div class="cart-row">' +
       '<img src="' + (i.imageUrl || "") + '" alt="">' +
-      '<div class="flex-grow-1"><strong>' + i.name + '</strong><div class="small text-secondary">' + dinero(i.price) + '</div></div>' +
-      '<input type="number" min="1" class="form-control" style="width:5rem" value="' + i.quantity + '" data-idx="' + idx + '">' +
-      '<button class="btn btn-sm btn-outline-danger" data-del="' + idx + '">Quitar</button>' +
+      '<div style="flex:1"><strong>' + i.name + '</strong><div class="muted">' + dinero(i.price) + '</div></div>' +
+      '<input type="number" min="1" value="' + i.quantity + '" data-idx="' + idx + '">' +
+      '<button class="btn btn-danger" data-del="' + idx + '">Quitar</button>' +
       '</div>';
   }).join("") +
-    '<div class="d-flex justify-content-between align-items-center pt-3">' +
+    '<div class="row-between">' +
       '<strong>Total ' + dinero(total) + '</strong>' +
-      '<button class="btn btn-gold" id="btn-checkout">Crear pedido</button>' +
+      '<button class="btn btn-primary" id="btn-checkout">Crear pedido</button>' +
     '</div>';
 
   box.querySelectorAll("input[data-idx]").forEach(function (input) {

@@ -1,28 +1,21 @@
-<nav class="navbar navbar-expand-lg ns-nav">
-  <div class="container">
-    <a class="navbar-brand" data-ns-href="/index.html">NordicStore</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nsNav" aria-label="Menú">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nsNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" data-ns-href="/index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" data-ns-href="/pages/catalogo/catalogo.html">Catálogo</a></li>
-        <li class="nav-item"><a class="nav-link" data-ns-href="/pages/carrito/carrito.html">Carrito <span id="cart-badge">0</span></a></li>
-        <li class="nav-item" id="pedidos-link"><a class="nav-link" data-ns-href="/pages/pedidos/pedidos.html">Pedidos</a></li>
-        <li class="nav-item"><a class="nav-link" data-ns-href="/pages/nosotros/nosotros.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" data-ns-href="/pages/contacto/contacto.html">Contacto</a></li>
-        <li class="nav-item" id="admin-link" style="display:none;"><a class="nav-link" data-ns-href="/pages/admin/admin.html">Admin</a></li>
-        <li class="nav-item">
-          <div id="user-info" class="user-session">
-            <span id="userName"></span>
-            <button type="button" class="btn-cerrar-sesion" id="btnCerrarSesion">Salir</button>
-          </div>
-          <div id="acceso-botones">
-            <a class="btn btn-sm btn-gold" data-ns-href="/pages/login/login.html">Iniciar sesión</a>
-          </div>
-        </li>
-      </ul>
+<header class="navbar">
+  <a class="brand" data-ns-href="/index.html"><span class="brand-mark">◆</span> Nordic<strong>Store</strong></a>
+  <nav class="nav-links">
+    <a data-ns-href="/index.html">Catálogo</a>
+    <a data-ns-href="/pages/carrito/carrito.html">Carrito <span id="cart-badge">0</span></a>
+    <a data-ns-href="/pages/pedidos/pedidos.html" id="pedidos-link">Mis órdenes</a>
+    <a data-ns-href="/pages/nosotros/nosotros.html">Nosotros</a>
+    <a data-ns-href="/pages/contacto/contacto.html">Contacto</a>
+    <a data-ns-href="/pages/admin/admin.html" id="admin-link" style="display:none;">Atelier</a>
+  </nav>
+  <div class="nav-actions">
+    <div id="user-info" class="user-session">
+      <span class="user" id="userName"></span>
+      <button type="button" class="btn btn-ghost" id="btnCerrarSesion">Salir</button>
+    </div>
+    <div id="acceso-botones">
+      <a class="btn btn-ghost" data-ns-href="/pages/registro/registro.html">Crear cuenta</a>
+      <a class="btn btn-primary" data-ns-href="/pages/login/login.html">Iniciar sesión</a>
     </div>
   </div>
-</nav>
+</header>

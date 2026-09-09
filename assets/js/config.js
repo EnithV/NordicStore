@@ -68,7 +68,7 @@ function saludoNavbar(nombre) {
 
 function marcarEnlaceActivo() {
   var slug = (window.location.pathname || "").split("/").filter(Boolean).pop() || "index.html";
-  document.querySelectorAll(".navbar-nav .nav-link").forEach(function (enlace) {
+  document.querySelectorAll(".nav-links a").forEach(function (enlace) {
     var href = enlace.getAttribute("href") || "";
     var activo = href.indexOf(slug) !== -1 || (slug === "index.html" && href.indexOf("index.html") !== -1);
     enlace.classList.toggle("active", activo);
@@ -171,7 +171,7 @@ function montarAsistente() {
   btn.className = "assistant-btn";
   btn.type = "button";
   btn.setAttribute("aria-label", "Asistente de compra");
-  btn.innerHTML = '<i class="fa-solid fa-comments"></i>';
+  btn.textContent = "✦";
   var panel = document.createElement("div");
   panel.className = "assistant-panel";
   panel.id = "assistant-panel";

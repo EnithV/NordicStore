@@ -3,44 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="NordicStore — tienda demo de electrónica. Catálogo, carrito, pedidos y pagos." />
-    <title>NordicStore — Inicio</title>
+    <meta name="description" content="NordicStore — tienda demo de electrónica." />
+    <title>NordicStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
-  <body>
-    <header id="header" class="sticky-top"></header>
-    <section class="hero-sign">
-      <div>
-        <p class="small text-uppercase mb-1" style="letter-spacing:0.2em;color:var(--gold);">Est. 2026</p>
-        <h1>NORDICSTORE</h1>
-        <p>Electrónica de viaje, escritorio y captura. Un demo público con catálogo, carrito, pedidos y pagos.</p>
-        <a class="btn btn-gold px-4" href="pages/catalogo/catalogo.html">Ver catálogo</a>
-      </div>
+  <body class="has-shop">
+    <div id="header"></div>
+    <section class="hero">
+      <h1 class="sr-only">NordicStore</h1>
+      <img class="hero-art" src="assets/images/nordic-hero.png" width="1600" height="900" alt="NordicStore">
     </section>
-    <section class="section">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-end mb-3">
-          <h2>Productos destacados</h2>
-          <a href="pages/catalogo/catalogo.html">Ver todos</a>
-        </div>
-        <div class="row g-3" id="featured"></div>
-      </div>
-    </section>
-    <section class="section pt-0">
-      <div class="container">
-        <h2 class="mb-3">Lo que dice el hall</h2>
-        <div class="row g-3">
-          <div class="col-md-4"><div class="review-card"><strong>Freya M.</strong><p class="small mb-0 mt-2">El scooter llegó listo para la demo. El flujo de compra se entiende sin manual.</p></div></div>
-          <div class="col-md-4"><div class="review-card"><strong>Bjorn K.</strong><p class="small mb-0 mt-2">Pedí con PayPal demo y vi el pedido pasar a pagado. Claro y honesto.</p></div></div>
-          <div class="col-md-4"><div class="review-card"><strong>Sigrid L.</strong><p class="small mb-0 mt-2">El asistente no inventa precios. Eso ya lo diferencia de un chatbot de adorno.</p></div></div>
-        </div>
+    <section class="shelf">
+      <div class="shelf-inner">
+        <h2 class="shelf-title">Productos destacados</h2>
+        <p class="lede">Tecnología para el norte. Movilidad, audio y cómputo con carácter invernal.</p>
+        <div class="grid" id="featured"></div>
       </div>
     </section>
     <div id="footer-placeholder"></div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/config.js"></script>
     <script src="assets/js/api.js"></script>
     <script src="assets/js/store.js"></script>
