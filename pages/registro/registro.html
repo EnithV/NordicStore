@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NordicStore — Registro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+  </head>
+  <body>
+    <header id="header" class="sticky-top"></header>
+    <div class="container page-head pb-5">
+      <h1>Crear cuenta</h1>
+      <form class="panel mt-3" id="reg-form" style="max-width:28rem;">
+        <label class="form-label">Nombre</label>
+        <input class="form-control mb-2" name="name" required>
+        <label class="form-label">Usuario</label>
+        <input class="form-control mb-2" name="username" required>
+        <label class="form-label">Correo</label>
+        <input class="form-control mb-2" type="email" name="email" required>
+        <label class="form-label">Contraseña</label>
+        <input class="form-control mb-3" type="password" name="password" required minlength="6">
+        <button class="btn btn-wood" type="submit">Registrarme</button>
+      </form>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/config.js"></script>
+    <script src="../../assets/js/api.js"></script>
+    <script src="../../assets/js/store.js"></script>
+    <script>
+      document.getElementById("reg-form").addEventListener("submit", async function (ev) {
+        ev.preventDefault();
+        var fd = new FormData(ev.target);
+        try {
+          await apiFetch("/auth/register", {
+            method: "POST",
+            body: JSON.stringify({
+              name: fd.get("name"),
+              username: fd.get("username"),
+              email: fd.get("email"),
+              password: fd.get("password")
+            })
+          });
+          toast("Cuenta creada. Ahora inicia sesión.");
+          window.location.href = urlApp("/pages/login/login.html");
+        } catch (e) {
+          toast(e.message || "No se pudo registrar", "error");
+        }
+      });
+    </script>
+  </body>
+</html>

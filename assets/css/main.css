@@ -1,0 +1,265 @@
+:root {
+  --primary: #6e4424;
+  --primary-dark: #4f2f18;
+  --primary-soft: #8a5a32;
+  --ink: #1c1410;
+  --muted: #6b5b4e;
+  --line: #ddd0c0;
+  --bg: #f3ebe2;
+  --bg-deep: #e8dccf;
+  --card: #fff8f0;
+  --danger: #b42318;
+  --success: #3d6b45;
+  --nav: #1a1410;
+  --nav-mid: #241c16;
+  --gold: #e8c547;
+  --champagne: #c4a77d;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Figtree", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 120% 80% at 10% -10%, rgba(196, 167, 125, 0.22), transparent 50%),
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(110, 68, 36, 0.1), transparent 45%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-dark); }
+
+.ns-nav {
+  background: linear-gradient(180deg, var(--nav) 0%, var(--nav-mid) 100%);
+  border-bottom: 1px solid rgba(232, 197, 71, 0.25);
+}
+
+.ns-nav .navbar-brand {
+  font-family: var(--font-display);
+  color: var(--gold) !important;
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+}
+
+.ns-nav .nav-link {
+  color: #f4efe8 !important;
+  font-weight: 500;
+}
+
+.ns-nav .nav-link.active,
+.ns-nav .nav-link:hover { color: var(--gold) !important; }
+
+.ns-nav .navbar-toggler { border-color: var(--champagne); }
+.ns-nav .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--nav);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-gold:hover { background: #d4af37; color: var(--nav); }
+
+.btn-wood {
+  background: var(--primary);
+  color: #fff8f0;
+  border: none;
+}
+
+.btn-wood:hover { background: var(--primary-dark); color: #fff; }
+
+.btn-ghost {
+  border: 1px solid var(--champagne);
+  color: #f4efe8;
+  background: transparent;
+}
+
+.hero-sign {
+  background:
+    linear-gradient(180deg, rgba(26, 20, 16, 0.2), rgba(26, 20, 16, 0.45)),
+    url("../images/nordic-hero.png") center/contain no-repeat,
+    #1a1410;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff8f0;
+  padding: 4rem 1rem 3rem;
+}
+
+.hero-sign h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.hero-sign p { max-width: 38rem; margin: 0 auto 1.4rem; color: #f4efe8; }
+
+.section { padding: 3.2rem 0; }
+
+.section h2 {
+  font-family: var(--font-display);
+  color: var(--primary-dark);
+}
+
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 24px rgba(80, 50, 20, 0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.product-card .body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+.product-card .price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+.product-card .cat { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.review-card, .panel, .info-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.3rem;
+}
+
+.ns-footer {
+  background: linear-gradient(180deg, var(--nav-mid) 0%, var(--nav) 100%);
+  color: #f4efe8;
+  padding: 2.4rem 0 1.2rem;
+  margin-top: 3rem;
+}
+
+.ns-footer a { color: var(--gold); }
+.ns-footer .pills span {
+  display: inline-block;
+  border: 1px solid rgba(232, 197, 71, 0.4);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-size: 0.78rem;
+  margin: 0.15rem;
+}
+
+#cart-badge {
+  display: none;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--nav);
+  font-size: 0.7rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+}
+
+.ns-toast {
+  position: fixed;
+  bottom: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--nav);
+  color: #fff8f0;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+  z-index: 1080;
+  border: 1px solid var(--gold);
+}
+
+.ns-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.ns-toast.error { border-color: #f0a0a0; }
+
+.assistant-btn {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: var(--gold);
+  font-size: 1.4rem;
+  box-shadow: 0 10px 24px rgba(26, 20, 16, 0.35);
+  z-index: 1070;
+}
+
+.assistant-panel {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 5.2rem;
+  width: min(360px, calc(100vw - 1.6rem));
+  height: 420px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: none;
+  flex-direction: column;
+  z-index: 1070;
+  box-shadow: 0 16px 40px rgba(26, 20, 16, 0.25);
+}
+
+.assistant-panel.open { display: flex; }
+.assistant-panel header {
+  background: var(--nav);
+  color: var(--gold);
+  padding: 0.75rem 1rem;
+  border-radius: 16px 16px 0 0;
+  font-family: var(--font-display);
+}
+.assistant-log { flex: 1; overflow: auto; padding: 0.8rem; font-size: 0.92rem; }
+.assistant-log .bot, .assistant-log .me {
+  margin-bottom: 0.65rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+.assistant-log .bot { background: #f3ebe2; }
+.assistant-log .me { background: #efe3c8; text-align: right; }
+.assistant-panel form { display: flex; gap: 0.4rem; padding: 0.6rem; border-top: 1px solid var(--line); }
+
+.page-head { padding: 2.2rem 0 0.4rem; }
+.page-head h1 { font-family: var(--font-display); color: var(--primary-dark); }
+
+.cart-row img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; }
+
+.pay-demo {
+  border-radius: 14px;
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+.pay-demo.paypal { background: #fff7d6; border: 1px solid #e8c547; }
+.pay-demo.wompi { background: #e8f7ef; border: 1px solid #3d6b45; }
+
+.user-session { display: none; align-items: center; gap: 0.6rem; color: #f4efe8; }
+.btn-cerrar-sesion {
+  background: transparent;
+  border: 1px solid var(--champagne);
+  color: #f4efe8;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.82rem;
+}

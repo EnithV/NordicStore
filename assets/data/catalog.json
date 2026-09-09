@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Nordic Glide Scooter",
+    "description": "Patín eléctrico urbano de 25 km de autonomía. Ideal para el día a día.",
+    "price": 449,
+    "stock": 18,
+    "imageUrl": "https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 1, "name": "Mobility" }
+  },
+  {
+    "id": 2,
+    "name": "Aurora X1 Smartphone",
+    "description": "Pantalla 6.5\", 256 GB y cámara dual. Listo para el flujo de demo.",
+    "price": 699,
+    "stock": 40,
+    "imageUrl": "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 2, "name": "Phones & Wearables" }
+  },
+  {
+    "id": 3,
+    "name": "Polar Quiet Headphones",
+    "description": "Auriculares over-ear con cancelación activa y 30 h de batería.",
+    "price": 219,
+    "stock": 55,
+    "imageUrl": "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 3, "name": "Audio" }
+  },
+  {
+    "id": 4,
+    "name": "Fjord Ultrabook 14",
+    "description": "Portátil ultraligero 14\" con SSD 512 GB para trabajo y estudio.",
+    "price": 1099,
+    "stock": 22,
+    "imageUrl": "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 4, "name": "Computing" }
+  },
+  {
+    "id": 5,
+    "name": "Pulse Steel Watch",
+    "description": "Smartwatch con GPS, monitor de sueño y correa de acero.",
+    "price": 279,
+    "stock": 35,
+    "imageUrl": "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 5, "name": "Phones & Wearables" }
+  },
+  {
+    "id": 6,
+    "name": "Rune Mechanical Keyboard",
+    "description": "Teclado mecánico compacto con switches táctiles y retroiluminación.",
+    "price": 129,
+    "stock": 60,
+    "imageUrl": "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 4, "name": "Computing" }
+  },
+  {
+    "id": 7,
+    "name": "Lumen Mirrorless Cam",
+    "description": "Cámara mirrorless con lente 24–70 y grabación 4K.",
+    "price": 899,
+    "stock": 12,
+    "imageUrl": "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 5, "name": "Imaging" }
+  },
+  {
+    "id": 8,
+    "name": "Harbor Bluetooth Speaker",
+    "description": "Altavoz portátil resistente al agua con 12 h de reproducción.",
+    "price": 89,
+    "stock": 70,
+    "imageUrl": "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 3, "name": "Audio" }
+  },
+  {
+    "id": 9,
+    "name": "Sild Tablet 11",
+    "description": "Tablet 11\" con lápiz óptico opcional y 128 GB de almacenamiento.",
+    "price": 479,
+    "stock": 28,
+    "imageUrl": "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 4, "name": "Computing" }
+  },
+  {
+    "id": 10,
+    "name": "Trail Action Cam",
+    "description": "Cámara de acción 4K resistente a golpes y sumergible hasta 10 m.",
+    "price": 249,
+    "stock": 33,
+    "imageUrl": "https://images.pexels.com/photos/243757/pexels-photo-243757.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": { "id": 5, "name": "Imaging" }
+  }
+]
