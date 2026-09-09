@@ -3,38 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NordicStore — Admin</title>
+    <title>NordicStore</title>
+    <style>
+      html, body { margin: 0; font-family: Figtree, system-ui, sans-serif; }
+      .navbar { display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 68px; background: #1a1410; color: #f4efe8; }
+      .nav-links { display: flex; gap: 20px; }
+      .nav-links a { color: #b8a898; text-decoration: none; }
+      .nav-actions { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+      [hidden] { display: none !important; }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script src="../../assets/js/boot.js"></script>
+    <script src="/NordicStore/assets/js/boot.js"></script>
   </head>
   <body>
     <div id="header"></div>
-    <main class="content page-head">
-      <h1>Panel admin</h1>
-      <p class="text-secondary">Clientes del API. Entra con <code>lars / password</code>.</p>
-      <div class="panel" id="admin-box">Cargando…</div>
-    </div>
+    <main class="content">
+      <h1 data-i18n="admin.title">Atelier</h1>
+      <p class="muted" data-i18n="admin.subtitle">Clientes del API. Entra con lars / password.</p>
+      <div class="panel" id="admin-box"></div>
+    </main>
     <div id="footer-placeholder"></div>
-    <script src="../../assets/js/config.js"></script>
-    <script src="../../assets/js/api.js"></script>
-    <script src="../../assets/js/store.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-        var box = document.getElementById("admin-box");
-        var user = usuarioActual();
-        if (!user || String(user.rol).toUpperCase() !== "ADMIN") {
-          box.textContent = "Necesitas una sesión ADMIN (lars / password).";
-          return;
-        }
-        try {
-          var list = await apiFetch("/customers");
-          box.innerHTML = "<table class='table'><thead><tr><th>Id</th><th>Nombre</th><th>Usuario</th><th>Rol</th></tr></thead><tbody>" +
-            list.map(function (c) {
-              return "<tr><td>" + c.id + "</td><td>" + c.name + "</td><td>" + c.username + "</td><td>" + c.rol + "</td></tr>";
-            }).join("") + "</tbody></table>";
-        } catch (e) {
-          box.textContent = e.message || "No se pudo cargar clientes. ¿El API está en línea?";
-        }
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"]);
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(async function () {
+          var box = document.getElementById("admin-box");
+          var user = usuarioActual();
+          if (!user || String(user.rol).toUpperCase() !== "ADMIN") {
+            box.textContent = t("admin.error.load");
+            return;
+          }
+          try {
+            var list = await apiFetch("/customers");
+            box.innerHTML = "<table class='items'><thead><tr><th>Id</th><th>" + t("register.firstName") +
+              "</th><th>" + t("register.username") + "</th></tr></thead><tbody>" +
+              list.map(function (c) {
+                return "<tr><td>" + c.id + "</td><td>" + c.name + "</td><td>" + c.username + "</td></tr>";
+              }).join("") + "</tbody></table>";
+          } catch (e) {
+            box.textContent = e.message || t("admin.error.load");
+          }
+        }, 80);
       });
     </script>
   </body>

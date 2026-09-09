@@ -3,23 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NordicStore — Pedidos</title>
+    <title>NordicStore</title>
+    <style>
+      html, body { margin: 0; font-family: Figtree, system-ui, sans-serif; }
+      .navbar { display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 68px; background: #1a1410; color: #f4efe8; }
+      .nav-links { display: flex; gap: 20px; }
+      .nav-links a { color: #b8a898; text-decoration: none; }
+      .nav-actions { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+      [hidden] { display: none !important; }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script src="../../assets/js/boot.js"></script>
+    <script src="/NordicStore/assets/js/boot.js"></script>
   </head>
   <body>
     <div id="header"></div>
     <main class="content">
-      <div class="page-head">
-        <h1>Mis órdenes</h1>
-        <p class="muted">Tarjeta, PayPal o Wompi (demo). FAIL_CARD rechaza.</p>
-      </div>
+      <h1 data-i18n="orders.title">Mis órdenes</h1>
       <div id="orders"></div>
     </main>
     <div id="footer-placeholder"></div>
-    <script src="../../assets/js/config.js"></script>
-    <script src="../../assets/js/api.js"></script>
-    <script src="../../assets/js/store.js"></script>
-    <script src="pedidos.js"></script>
+    <script>
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "pages/pedidos/pedidos.js"]);
+    </script>
   </body>
 </html>

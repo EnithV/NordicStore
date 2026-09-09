@@ -1,9 +1,5 @@
 const API_BASE = "https://nordicstore-api.onrender.com";
-if (typeof window !== "undefined") {
-  window.API_BASE = API_BASE;
-}
-
-const FRONTEND_BASE_URL = "https://enithv.github.io/NordicStore";
+window.API_BASE = API_BASE;
 const GITHUB_PAGES_BASE_PATH = "/NordicStore";
 
 function obtenerBaseAplicacion() {
@@ -12,23 +8,23 @@ function obtenerBaseAplicacion() {
   if (pagesIdx >= 0) {
     return pagesIdx > 0 ? path.substring(0, pagesIdx) : "";
   }
-  if (GITHUB_PAGES_BASE_PATH && path.indexOf(GITHUB_PAGES_BASE_PATH) === 0) {
+  if (path.indexOf(GITHUB_PAGES_BASE_PATH) === 0) {
     return GITHUB_PAGES_BASE_PATH;
   }
-  if (window.location.hostname.indexOf("github.io") !== -1 && GITHUB_PAGES_BASE_PATH) {
+  if (window.location.hostname.indexOf("github.io") !== -1) {
     return GITHUB_PAGES_BASE_PATH;
   }
   return "";
 }
 
-function urlApp(rutaDesdeRaiz) {
+function urlApp(ruta) {
   var base = obtenerBaseAplicacion();
-  var ruta = rutaDesdeRaiz.charAt(0) === "/" ? rutaDesdeRaiz : "/" + rutaDesdeRaiz;
-  return base + ruta;
+  var clean = ruta.charAt(0) === "/" ? ruta : "/" + ruta;
+  return base + clean;
 }
 
 function dinero(valor) {
-  return "$" + Number(valor || 0).toFixed(2) + " USD";
+  return "$" + Number(valor || 0).toFixed(2);
 }
 
 function usuarioActual() {
@@ -60,17 +56,59 @@ function limpiarSesion() {
   localStorage.removeItem("ns_user");
 }
 
-function saludoNavbar(nombre) {
-  var limpio = (nombre || "").trim();
-  if (!limpio) return "Hola";
-  return "Hola, " + limpio.split(/\s+/)[0];
+function htmlNavbar() {
+  return (
+    '<header class="navbar">' +
+      '<a class="brand" data-ns-href="/index.html"><span class="brand-mark">◆</span> Nordic<strong>Store</strong></a>' +
+      '<nav class="nav-links">' +
+        '<a data-ns-href="/index.html" data-i18n="nav.catalog">Catálogo</a>' +
+        '<a data-ns-href="/pages/carrito/carrito.html" id="nav-cart" hidden><span data-i18n="nav.cart">Carrito</span> <span id="cart-badge">0</span></a>' +
+        '<a data-ns-href="/pages/pedidos/pedidos.html" id="nav-orders" hidden data-i18n="nav.orders">Mis órdenes</a>' +
+        '<a data-ns-href="/pages/perfil/perfil.html" id="nav-profile" hidden data-i18n="nav.profile">Perfil</a>' +
+        '<a data-ns-href="/pages/admin/admin.html" id="admin-link" hidden data-i18n="nav.admin">Atelier</a>' +
+      "</nav>" +
+      '<div class="nav-actions">' +
+        '<div class="lang" role="group" aria-label="Idioma">' +
+          '<button type="button" class="lang-btn" data-lang="es">ES</button>' +
+          '<button type="button" class="lang-btn" data-lang="en">EN</button>' +
+        "</div>" +
+        '<div id="user-info" class="user-session">' +
+          '<span class="user" id="userName"></span>' +
+          '<button type="button" class="btn btn-ghost" id="btnCerrarSesion" data-i18n="nav.logout">Salir</button>' +
+        "</div>" +
+        '<div id="acceso-botones">' +
+          '<a class="btn btn-ghost" data-ns-href="/pages/registro/registro.html" data-i18n="nav.register">Crear cuenta</a>' +
+          '<a class="btn btn-primary" data-ns-href="/pages/login/login.html" data-i18n="nav.login">Iniciar sesión</a>' +
+        "</div>" +
+      "</div>" +
+    "</header>"
+  );
+}
+
+function htmlFooter() {
+  return (
+    '<footer class="site-footer">' +
+      '<div class="footer-inner">' +
+        '<div class="footer-pills">' +
+          '<span class="footer-pill">Java 17</span>' +
+          '<span class="footer-pill">Spring Boot</span>' +
+          '<span class="footer-pill">Angular</span>' +
+          '<span class="footer-pill">Keycloak</span>' +
+        "</div>" +
+        '<p class="footer-author">Gicela Vargas</p>' +
+        '<p class="footer-rights">© 2026 Gicela Vargas. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>' +
+      "</div>" +
+    "</footer>"
+  );
 }
 
 function marcarEnlaceActivo() {
   var slug = (window.location.pathname || "").split("/").filter(Boolean).pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach(function (enlace) {
     var href = enlace.getAttribute("href") || "";
-    var activo = href.indexOf(slug) !== -1 || (slug === "index.html" && href.indexOf("index.html") !== -1);
+    var activo = (slug === "index.html" || slug === "NordicStore")
+      ? href.indexOf("index.html") !== -1
+      : href.indexOf(slug) !== -1;
     enlace.classList.toggle("active", activo);
   });
 }
@@ -80,21 +118,35 @@ function actualizarNavbar() {
   var userInfo = document.getElementById("user-info");
   var acceso = document.getElementById("acceso-botones");
   var userName = document.getElementById("userName");
-  var adminLink = document.getElementById("admin-link");
-  var pedidosLink = document.getElementById("pedidos-link");
-
+  ["nav-cart", "nav-orders", "nav-profile", "admin-link"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (id === "admin-link") {
+      el.hidden = !(user && String(user.rol).toUpperCase() === "ADMIN");
+    } else {
+      el.hidden = !user;
+    }
+  });
   if (user) {
-    if (userName) userName.textContent = saludoNavbar(user.nombre || user.username);
+    if (userName && typeof t === "function") {
+      userName.textContent = t("nav.hello", { name: (user.nombre || user.username || "").split(/\s+/)[0] });
+    }
     if (userInfo) userInfo.style.display = "flex";
     if (acceso) acceso.style.display = "none";
-    if (adminLink) adminLink.style.display = (user.rol || "").toString().toUpperCase() === "ADMIN" ? "" : "none";
   } else {
     if (userInfo) userInfo.style.display = "none";
-    if (acceso) acceso.style.display = "block";
-    if (adminLink) adminLink.style.display = "none";
+    if (acceso) acceso.style.display = "flex";
+    acceso && acceso.style.setProperty("gap", "14px");
   }
+  if (typeof aplicarI18n === "function") aplicarI18n();
   marcarEnlaceActivo();
   actualizarBadgeCarrito();
+}
+
+function exigirSesion() {
+  if (usuarioActual()) return true;
+  window.location.href = urlApp("/pages/login/login.html");
+  return false;
 }
 
 function cerrarSesion() {
@@ -102,37 +154,26 @@ function cerrarSesion() {
   window.location.href = urlApp("/index.html");
 }
 
+function cablearRutas(root) {
+  (root || document).querySelectorAll("[data-ns-href]").forEach(function (el) {
+    el.setAttribute("href", urlApp(el.getAttribute("data-ns-href")));
+  });
+}
+
 function cargarLayout() {
   var header = document.getElementById("header");
   var footer = document.getElementById("footer-placeholder");
-  var navPath = urlApp("/components/navbar/navbar.html");
-  var footPath = urlApp("/components/footer/footer.html");
-
-  if (header) {
-    fetch(navPath)
-      .then(function (res) { return res.text(); })
-      .then(function (html) {
-        header.innerHTML = html;
-        header.querySelectorAll("[data-ns-href]").forEach(function (el) {
-          el.setAttribute("href", urlApp(el.getAttribute("data-ns-href")));
-        });
-        actualizarNavbar();
-        var btn = document.getElementById("btnCerrarSesion");
-        if (btn) btn.addEventListener("click", cerrarSesion);
-      })
-      .catch(function () { /* layout opcional */ });
-  }
-  if (footer) {
-    fetch(footPath)
-      .then(function (res) { return res.text(); })
-      .then(function (html) {
-        footer.innerHTML = html;
-        footer.querySelectorAll("[data-ns-href]").forEach(function (el) {
-          el.setAttribute("href", urlApp(el.getAttribute("data-ns-href")));
-        });
-      })
-      .catch(function () { /* footer opcional */ });
-  }
+  if (header) header.innerHTML = htmlNavbar();
+  if (footer) footer.innerHTML = htmlFooter();
+  cablearRutas(document);
+  document.querySelectorAll(".lang-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setLang(btn.getAttribute("data-lang"));
+    });
+  });
+  var out = document.getElementById("btnCerrarSesion");
+  if (out) out.addEventListener("click", cerrarSesion);
+  actualizarNavbar();
   montarAsistente();
 }
 
@@ -141,8 +182,8 @@ function actualizarBadgeCarrito() {
   if (!badge) return;
   var count = 0;
   try {
-    var cart = JSON.parse(localStorage.getItem("ns_cart") || "[]");
-    count = cart.reduce(function (sum, item) { return sum + (item.quantity || 0); }, 0);
+    count = JSON.parse(localStorage.getItem("ns_cart") || "[]")
+      .reduce(function (sum, item) { return sum + (item.quantity || 0); }, 0);
   } catch (e) {
     count = 0;
   }
@@ -164,26 +205,37 @@ function toast(mensaje, tipo) {
   setTimeout(function () { el.classList.remove("show"); }, 2800);
 }
 
+function refrescarAsistenteI18n() {
+  var btn = document.getElementById("assistant-btn");
+  var title = document.getElementById("assistant-title");
+  var welcome = document.getElementById("assistant-welcome");
+  var input = document.getElementById("assistant-input");
+  var send = document.getElementById("assistant-send");
+  if (btn) btn.setAttribute("aria-label", t("assistant.title"));
+  if (title) title.textContent = t("assistant.title");
+  if (welcome) welcome.textContent = t("assistant.welcome");
+  if (input) input.placeholder = t("assistant.placeholder");
+  if (send) send.textContent = t("assistant.send");
+}
+
 function montarAsistente() {
   if (document.getElementById("assistant-btn")) return;
   var btn = document.createElement("button");
   btn.id = "assistant-btn";
   btn.className = "assistant-btn";
   btn.type = "button";
-  btn.setAttribute("aria-label", "Asistente de compra");
   btn.textContent = "✦";
   var panel = document.createElement("div");
   panel.className = "assistant-panel";
   panel.id = "assistant-panel";
   panel.innerHTML =
-    "<header>Asistente NordicStore</header>" +
-    '<div class="assistant-log" id="assistant-log"><div class="bot">Pregúntame por un producto. Uso el catálogo real y no invento precios. No hago checkout.</div></div>' +
-    '<form id="assistant-form"><input class="form-control form-control-sm" id="assistant-input" placeholder="Ej. auriculares" autocomplete="off"><button class="btn btn-sm btn-wood" type="submit">Enviar</button></form>';
+    '<header><strong id="assistant-title"></strong></header>' +
+    '<div class="assistant-log" id="assistant-log"><div class="bot" id="assistant-welcome"></div></div>' +
+    '<form id="assistant-form"><input id="assistant-input" autocomplete="off"><button class="btn btn-primary" type="submit" id="assistant-send"></button></form>';
   document.body.appendChild(btn);
   document.body.appendChild(panel);
-  btn.addEventListener("click", function () {
-    panel.classList.toggle("open");
-  });
+  refrescarAsistenteI18n();
+  btn.addEventListener("click", function () { panel.classList.toggle("open"); });
   document.getElementById("assistant-form").addEventListener("submit", async function (ev) {
     ev.preventDefault();
     var input = document.getElementById("assistant-input");
@@ -196,10 +248,10 @@ function montarAsistente() {
     try {
       var res = await chatAsistente(msg);
       log.insertAdjacentHTML("beforeend", '<div class="bot"></div>');
-      log.lastElementChild.textContent = res.reply || "Sin respuesta";
+      log.lastElementChild.textContent = res.reply || t("assistant.error");
     } catch (e) {
       log.insertAdjacentHTML("beforeend", '<div class="bot"></div>');
-      log.lastElementChild.textContent = "No pude consultar el catálogo ahora.";
+      log.lastElementChild.textContent = t("assistant.error");
     }
     log.scrollTop = log.scrollHeight;
   });

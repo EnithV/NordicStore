@@ -3,49 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NordicStore — Registro</title>
+    <title>NordicStore</title>
+    <style>
+      html, body { margin: 0; font-family: Figtree, system-ui, sans-serif; }
+      .navbar { display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 68px; background: #1a1410; color: #f4efe8; }
+      .nav-links { display: flex; gap: 20px; }
+      .nav-links a { color: #b8a898; text-decoration: none; }
+      .nav-actions { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+      [hidden] { display: none !important; }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script src="../../assets/js/boot.js"></script>
+    <script src="/NordicStore/assets/js/boot.js"></script>
   </head>
   <body>
     <div id="header"></div>
-    <main class="content page-head">
-      <h1>Crear cuenta</h1>
-      <form class="panel mt-3" id="reg-form" style="max-width:28rem;">
-        <label class="form-label">Nombre</label>
-        <input class="form-control mb-2" name="name" required>
-        <label class="form-label">Usuario</label>
-        <input class="form-control mb-2" name="username" required>
-        <label class="form-label">Correo</label>
-        <input class="form-control mb-2" type="email" name="email" required>
-        <label class="form-label">Contraseña</label>
-        <input class="form-control mb-3" type="password" name="password" required minlength="6">
-        <button class="btn btn-wood" type="submit">Registrarme</button>
+    <main class="content">
+      <h1 data-i18n="register.title">Crear cuenta</h1>
+      <form class="panel" id="reg-form" style="max-width:28rem;">
+        <label data-i18n="register.firstName">Nombre</label>
+        <input name="name" required>
+        <label data-i18n="register.username">Usuario</label>
+        <input name="username" required>
+        <label data-i18n="register.email">Correo electrónico</label>
+        <input type="email" name="email" required>
+        <label data-i18n="register.password">Contraseña</label>
+        <input type="password" name="password" required minlength="6">
+        <button class="btn btn-primary" type="submit" data-i18n="register.submit">Registrarme</button>
+        <p><a id="go-login" data-i18n="register.goLogin">Ya tengo cuenta — iniciar sesión</a></p>
       </form>
-    </div>
+    </main>
     <div id="footer-placeholder"></div>
-    <script src="../../assets/js/config.js"></script>
-    <script src="../../assets/js/api.js"></script>
-    <script src="../../assets/js/store.js"></script>
     <script>
-      document.getElementById("reg-form").addEventListener("submit", async function (ev) {
-        ev.preventDefault();
-        var fd = new FormData(ev.target);
-        try {
-          await apiFetch("/auth/register", {
-            method: "POST",
-            body: JSON.stringify({
-              name: fd.get("name"),
-              username: fd.get("username"),
-              email: fd.get("email"),
-              password: fd.get("password")
-            })
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"]);
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          var link = document.getElementById("go-login");
+          if (link) link.href = urlApp("/pages/login/login.html");
+          document.getElementById("reg-form").addEventListener("submit", async function (ev) {
+            ev.preventDefault();
+            var fd = new FormData(ev.target);
+            try {
+              await apiFetch("/auth/register", {
+                method: "POST",
+                body: JSON.stringify({
+                  name: fd.get("name"),
+                  username: fd.get("username"),
+                  email: fd.get("email"),
+                  password: fd.get("password")
+                })
+              });
+              toast(t("register.success"));
+              window.location.href = urlApp("/pages/login/login.html");
+            } catch (e) {
+              toast(e.message || t("register.error"), "error");
+            }
           });
-          toast("Cuenta creada. Ahora inicia sesión.");
-          window.location.href = urlApp("/pages/login/login.html");
-        } catch (e) {
-          toast(e.message || "No se pudo registrar", "error");
-        }
+        }, 80);
       });
     </script>
   </body>

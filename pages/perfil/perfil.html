@@ -19,15 +19,9 @@
   <body>
     <div id="header"></div>
     <main class="content">
-      <h1 data-i18n="login.title">Iniciar sesión</h1>
-      <form class="panel" id="login-form" style="max-width:28rem;">
-        <p class="muted" data-i18n="login.hint">Demo: aiko / password · admin lars / password</p>
-        <label data-i18n="login.user">Usuario o correo</label>
-        <input name="username" required>
-        <label data-i18n="login.password">Contraseña</label>
-        <input type="password" name="password" required>
-        <button class="btn btn-primary" type="submit" data-i18n="login.submit">Entrar</button>
-      </form>
+      <p class="muted" data-i18n="profile.eyebrow">Tu cuenta</p>
+      <h1 data-i18n="profile.title">Perfil</h1>
+      <div class="panel" id="profile-box"></div>
     </main>
     <div id="footer-placeholder"></div>
     <script>
@@ -36,22 +30,12 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
-          var form = document.getElementById("login-form");
-          if (!form) return;
-          form.addEventListener("submit", async function (ev) {
-            ev.preventDefault();
-            var fd = new FormData(form);
-            try {
-              var data = await apiFetch("/auth/login", {
-                method: "POST",
-                body: JSON.stringify({ username: fd.get("username"), password: fd.get("password") })
-              });
-              guardarSesion(data);
-              window.location.href = urlApp("/index.html");
-            } catch (e) {
-              toast(e.message || "Error", "error");
-            }
-          });
+          if (typeof exigirSesion === "function" && !exigirSesion()) return;
+          var user = usuarioActual();
+          document.getElementById("profile-box").innerHTML =
+            "<p>" + t("profile.subtitle", { name: user.nombre || user.username }) + "</p>" +
+            "<p><strong>" + t("register.username") + ":</strong> " + user.username + "</p>" +
+            "<p><strong>" + t("register.email") + ":</strong> " + (user.email || "") + "</p>";
         }, 80);
       });
     </script>
