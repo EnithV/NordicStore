@@ -5,7 +5,7 @@
     "description": "Patín eléctrico de 25 km de autonomía, para el trayecto diario.",
     "price": 449,
     "stock": 18,
-    "imageUrl": "https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "imageUrl": "https://images.pexels.com/photos/9660956/pexels-photo-9660956.jpeg?auto=compress&cs=tinysrgb&w=800",
     "category": { "id": 1, "name": "Mobility" }
   },
   {
@@ -68,7 +68,7 @@
     "description": "Altavoz portátil resistente al agua con 12 h de reproducción.",
     "price": 89,
     "stock": 70,
-    "imageUrl": "https://images.pexels.com/photos/1279107/pexels-photo-1279107.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "imageUrl": "https://images.pexels.com/photos/1706694/pexels-photo-1706694.jpeg?auto=compress&cs=tinysrgb&w=800",
     "category": { "id": 3, "name": "Audio" }
   },
   {
