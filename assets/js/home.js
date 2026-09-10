@@ -42,17 +42,27 @@ async function pintarCatalogo() {
   box.innerHTML = lista.length ? lista.map(tarjetaProducto).join("") : '<p class="lede">' + t("catalog.empty") + "</p>";
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+var homeListo = false;
+
+function iniciarHome() {
   var box = document.getElementById("featured") || document.getElementById("grid");
   if (!box) return;
   pintarCatalogo();
+  if (homeListo) return;
+  homeListo = true;
   box.addEventListener("click", function (ev) {
     var btn = ev.target.closest("[data-add]");
     if (!btn) return;
     var prod = nsProductos.find(function (p) { return Number(p.id) === Number(btn.getAttribute("data-add")); });
     if (prod) agregarAlCarrito(prod, 1);
   });
-});
+}
+
+if (typeof nsReady === "function") {
+  nsReady(iniciarHome);
+} else {
+  document.addEventListener("DOMContentLoaded", iniciarHome);
+}
 
 document.addEventListener("ns:lang", function () {
   if (document.getElementById("featured") || document.getElementById("grid")) {

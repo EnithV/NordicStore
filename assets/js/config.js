@@ -163,16 +163,19 @@ function cablearRutas(root) {
 function cargarLayout() {
   var header = document.getElementById("header");
   var footer = document.getElementById("footer-placeholder");
-  if (header) header.innerHTML = htmlNavbar();
-  if (footer) footer.innerHTML = htmlFooter();
+  var yaMontado = header && header.querySelector(".navbar");
+  if (header && !yaMontado) header.innerHTML = htmlNavbar();
+  if (footer && !footer.querySelector(".site-footer")) footer.innerHTML = htmlFooter();
   cablearRutas(document);
-  document.querySelectorAll(".lang-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      setLang(btn.getAttribute("data-lang"));
+  if (!yaMontado) {
+    document.querySelectorAll(".lang-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setLang(btn.getAttribute("data-lang"));
+      });
     });
-  });
-  var out = document.getElementById("btnCerrarSesion");
-  if (out) out.addEventListener("click", cerrarSesion);
+    var out = document.getElementById("btnCerrarSesion");
+    if (out) out.addEventListener("click", cerrarSesion);
+  }
   actualizarNavbar();
   montarAsistente();
 }
@@ -257,4 +260,8 @@ function montarAsistente() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarLayout);
+if (typeof nsReady === "function") {
+  nsReady(cargarLayout);
+} else {
+  document.addEventListener("DOMContentLoaded", cargarLayout);
+}

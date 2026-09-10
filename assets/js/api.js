@@ -32,17 +32,43 @@ async function apiDisponible() {
   }
 }
 
+function catalogoUrl() {
+  if (typeof nsAsset === "function") return nsAsset("assets/data/catalog.json");
+  if (typeof urlApp === "function") return urlApp("/assets/data/catalog.json");
+  return "assets/data/catalog.json";
+}
+
+function fetchConTiempo(url, opciones, ms) {
+  var ctrl = new AbortController();
+  var timer = setTimeout(function () { ctrl.abort(); }, ms || 2000);
+  return fetch(url, Object.assign({}, opciones || {}, { signal: ctrl.signal })).finally(function () {
+    clearTimeout(timer);
+  });
+}
+
+async function catalogoLocal(query) {
+  var res = await fetch(catalogoUrl());
+  var catalogo = await res.json();
+  if (!query) return catalogo;
+  var q = query.toLowerCase();
+  return catalogo.filter(function (p) {
+    return (p.name + " " + p.description + " " + ((p.category && p.category.name) || "")).toLowerCase().indexOf(q) !== -1;
+  });
+}
+
 async function cargarProductos(query) {
   try {
-    var qs = query ? "?q=" + encodeURIComponent(query) : "";
-    return await apiFetch("/products" + qs);
+    return await catalogoLocal(query);
   } catch (e) {
-    var res = await fetch(urlApp("/assets/data/catalog.json"));
-    var catalogo = await res.json();
-    if (!query) return catalogo;
-    var q = query.toLowerCase();
-    return catalogo.filter(function (p) {
-      return (p.name + " " + p.description + " " + (p.category && p.category.name || "")).toLowerCase().indexOf(q) !== -1;
-    });
+    try {
+      var qs = query ? "?q=" + encodeURIComponent(query) : "";
+      var respuesta = await fetchConTiempo(API_BASE + "/products" + qs, {
+        headers: { Accept: "application/json" }
+      }, 2000);
+      if (!respuesta.ok) throw new Error("API " + respuesta.status);
+      return await respuesta.json();
+    } catch (e2) {
+      return [];
+    }
   }
 }

@@ -66,8 +66,14 @@ async function pintarCarrito() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function iniciarCarrito() {
   if (typeof exigirSesion === "function" && !exigirSesion()) return;
   pintarCarrito();
-});
+}
+
+if (typeof nsReady === "function") {
+  nsReady(iniciarCarrito);
+} else {
+  document.addEventListener("DOMContentLoaded", iniciarCarrito);
+}
 document.addEventListener("ns:lang", pintarCarrito);

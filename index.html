@@ -21,20 +21,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <script src="assets/js/boot.js"></script>
-    <script src="/NordicStore/assets/js/boot.js"></script>
+    <script src="assets/js/boot.js?v=2"></script>
+    <script src="/NordicStore/assets/js/boot.js?v=2"></script>
   </head>
   <body class="has-shop">
     <div id="header"></div>
     <section class="hero">
       <h1 class="sr-only">NordicStore</h1>
-      <img class="hero-art" id="hero-art" alt="NordicStore">
+      <img class="hero-art" id="hero-art" alt="NordicStore" src="assets/images/nordic-hero.png">
     </section>
     <section class="shelf">
       <div class="shelf-inner">
         <h2 class="shelf-title" data-i18n="catalog.featured">Productos destacados</h2>
         <p class="lede" data-i18n="catalog.lede">Tecnología para el norte. Movilidad, audio y cómputo con carácter invernal.</p>
-        <div class="grid" id="featured"></div>
+        <div class="grid" id="featured"><p class="lede">Cargando productos…</p></div>
       </div>
     </section>
     <div id="footer-placeholder"></div>
@@ -48,7 +48,10 @@
           "assets/js/api.js",
           "assets/js/store.js",
           "assets/js/home.js"
-        ]);
+        ], function () {
+          if (typeof cargarLayout === "function") cargarLayout();
+          if (typeof iniciarHome === "function") iniciarHome();
+        });
       }
     </script>
   </body>

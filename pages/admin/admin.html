@@ -25,28 +25,23 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"]);
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(async function () {
-          var box = document.getElementById("admin-box");
-          var user = usuarioActual();
-          if (!user || String(user.rol).toUpperCase() !== "ADMIN") {
-            box.textContent = t("admin.error.load");
-            return;
-          }
-          try {
-            var list = await apiFetch("/customers");
-            box.innerHTML = "<table class='items'><thead><tr><th>Id</th><th>" + t("register.firstName") +
-              "</th><th>" + t("register.username") + "</th></tr></thead><tbody>" +
-              list.map(function (c) {
-                return "<tr><td>" + c.id + "</td><td>" + c.name + "</td><td>" + c.username + "</td></tr>";
-              }).join("") + "</tbody></table>";
-          } catch (e) {
-            box.textContent = e.message || t("admin.error.load");
-          }
-        }, 80);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"], async function () {
+        var box = document.getElementById("admin-box");
+        var user = usuarioActual();
+        if (!user || String(user.rol).toUpperCase() !== "ADMIN") {
+          box.textContent = t("admin.error.load");
+          return;
+        }
+        try {
+          var list = await apiFetch("/customers");
+          box.innerHTML = "<table class='items'><thead><tr><th>Id</th><th>" + t("register.firstName") +
+            "</th><th>" + t("register.username") + "</th></tr></thead><tbody>" +
+            list.map(function (c) {
+              return "<tr><td>" + c.id + "</td><td>" + c.name + "</td><td>" + c.username + "</td></tr>";
+            }).join("") + "</tbody></table>";
+        } catch (e) {
+          box.textContent = e.message || t("admin.error.load");
+        }
       });
     </script>
   </body>

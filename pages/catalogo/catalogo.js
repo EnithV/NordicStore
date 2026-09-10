@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function iniciarFiltrosCatalogo() {
   var select = document.getElementById("cat");
   var q = document.getElementById("q");
   var ready = setInterval(function () {
@@ -20,4 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (q) q.addEventListener("input", pintarCatalogo);
   }, 50);
-});
+}
+
+if (typeof nsReady === "function") {
+  nsReady(iniciarFiltrosCatalogo);
+} else {
+  document.addEventListener("DOMContentLoaded", iniciarFiltrosCatalogo);
+}

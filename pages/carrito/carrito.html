@@ -24,7 +24,10 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "pages/carrito/carrito.js"]);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "pages/carrito/carrito.js"], function () {
+        if (typeof cargarLayout === "function") cargarLayout();
+        if (typeof iniciarCarrito === "function") iniciarCarrito();
+      });
     </script>
   </body>
 </html>

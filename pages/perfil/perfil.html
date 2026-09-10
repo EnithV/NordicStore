@@ -25,18 +25,13 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"]);
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          if (typeof exigirSesion === "function" && !exigirSesion()) return;
-          var user = usuarioActual();
-          document.getElementById("profile-box").innerHTML =
-            "<p>" + t("profile.subtitle", { name: user.nombre || user.username }) + "</p>" +
-            "<p><strong>" + t("register.username") + ":</strong> " + user.username + "</p>" +
-            "<p><strong>" + t("register.email") + ":</strong> " + (user.email || "") + "</p>";
-        }, 80);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"], function () {
+        if (typeof exigirSesion === "function" && !exigirSesion()) return;
+        var user = usuarioActual();
+        document.getElementById("profile-box").innerHTML =
+          "<p>" + t("profile.subtitle", { name: user.nombre || user.username }) + "</p>" +
+          "<p><strong>" + t("register.username") + ":</strong> " + user.username + "</p>" +
+          "<p><strong>" + t("register.email") + ":</strong> " + (user.email || "") + "</p>";
       });
     </script>
   </body>

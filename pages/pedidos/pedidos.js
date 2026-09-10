@@ -68,8 +68,14 @@ async function pintarPedidos() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function iniciarPedidos() {
   if (typeof exigirSesion === "function" && !exigirSesion()) return;
   pintarPedidos();
-});
+}
+
+if (typeof nsReady === "function") {
+  nsReady(iniciarPedidos);
+} else {
+  document.addEventListener("DOMContentLoaded", iniciarPedidos);
+}
 document.addEventListener("ns:lang", pintarPedidos);

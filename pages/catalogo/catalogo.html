@@ -32,7 +32,11 @@
     </section>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "assets/js/home.js", "pages/catalogo/catalogo.js"]);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "assets/js/home.js", "pages/catalogo/catalogo.js"], function () {
+        if (typeof cargarLayout === "function") cargarLayout();
+        if (typeof iniciarHome === "function") iniciarHome();
+        if (typeof iniciarFiltrosCatalogo === "function") iniciarFiltrosCatalogo();
+      });
     </script>
   </body>
 </html>

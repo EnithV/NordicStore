@@ -24,7 +24,10 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "pages/pedidos/pedidos.js"]);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js", "pages/pedidos/pedidos.js"], function () {
+        if (typeof cargarLayout === "function") cargarLayout();
+        if (typeof iniciarPedidos === "function") iniciarPedidos();
+      });
     </script>
   </body>
 </html>

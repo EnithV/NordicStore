@@ -31,28 +31,23 @@
     </main>
     <div id="footer-placeholder"></div>
     <script>
-      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"]);
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(function () {
-          var form = document.getElementById("login-form");
-          if (!form) return;
-          form.addEventListener("submit", async function (ev) {
-            ev.preventDefault();
-            var fd = new FormData(form);
-            try {
-              var data = await apiFetch("/auth/login", {
-                method: "POST",
-                body: JSON.stringify({ username: fd.get("username"), password: fd.get("password") })
-              });
-              guardarSesion(data);
-              window.location.href = urlApp("/index.html");
-            } catch (e) {
-              toast(e.message || "Error", "error");
-            }
-          });
-        }, 80);
+      nsLoadScripts(["assets/js/i18n.js", "assets/js/config.js", "assets/js/api.js", "assets/js/store.js"], function () {
+        var form = document.getElementById("login-form");
+        if (!form) return;
+        form.addEventListener("submit", async function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(form);
+          try {
+            var data = await apiFetch("/auth/login", {
+              method: "POST",
+              body: JSON.stringify({ username: fd.get("username"), password: fd.get("password") })
+            });
+            guardarSesion(data);
+            window.location.href = urlApp("/index.html");
+          } catch (e) {
+            toast(e.message || "Error", "error");
+          }
+        });
       });
     </script>
   </body>
