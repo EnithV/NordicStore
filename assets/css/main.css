@@ -315,6 +315,7 @@ a { color: var(--primary); text-decoration: none; }
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  color: var(--ink);
 }
 
 .category {
@@ -327,12 +328,18 @@ a { color: var(--primary); text-decoration: none; }
 
 .product-body h3 {
   margin: 0;
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.3;
+  color: #1c1410;
 }
 
 .desc {
-  font-size: 0.85rem;
-  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #4a3d34;
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -346,7 +353,11 @@ a { color: var(--primary); text-decoration: none; }
   align-items: center;
 }
 
-.price { font-size: 1.15rem; font-weight: 700; }
+.price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1c1410;
+}
 
 .stock { font-size: 0.78rem; color: var(--success); }
 .stock.out { color: var(--danger); }

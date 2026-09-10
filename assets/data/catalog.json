@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Nordic Glide Scooter",
-    "description": "Patín eléctrico urbano de 25 km de autonomía. Ideal para el día a día.",
+    "name": "Patinete eléctrico urbano",
+    "description": "Patín eléctrico de 25 km de autonomía, para el trayecto diario.",
     "price": 449,
     "stock": 18,
     "imageUrl": "https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -10,8 +10,8 @@
   },
   {
     "id": 2,
-    "name": "Aurora X1 Smartphone",
-    "description": "Pantalla 6.5\", 256 GB y cámara dual. Listo para el flujo de demo.",
+    "name": "Smartphone 256 GB",
+    "description": "Pantalla 6.5\", 256 GB y cámara dual.",
     "price": 699,
     "stock": 40,
     "imageUrl": "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "name": "Polar Quiet Headphones",
+    "name": "Auriculares con cancelación de ruido",
     "description": "Auriculares over-ear con cancelación activa y 30 h de batería.",
     "price": 219,
     "stock": 55,
@@ -28,8 +28,8 @@
   },
   {
     "id": 4,
-    "name": "Fjord Ultrabook 14",
-    "description": "Portátil ultraligero 14\" con SSD 512 GB para trabajo y estudio.",
+    "name": "Portátil 14\" SSD 512 GB",
+    "description": "Portátil ultraligero de 14\" con SSD 512 GB, para trabajo y estudio.",
     "price": 1099,
     "stock": 22,
     "imageUrl": "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800",
@@ -37,7 +37,7 @@
   },
   {
     "id": 5,
-    "name": "Pulse Steel Watch",
+    "name": "Reloj inteligente GPS",
     "description": "Smartwatch con GPS, monitor de sueño y correa de acero.",
     "price": 279,
     "stock": 35,
@@ -46,7 +46,7 @@
   },
   {
     "id": 6,
-    "name": "Rune Mechanical Keyboard",
+    "name": "Teclado mecánico compacto",
     "description": "Teclado mecánico compacto con switches táctiles y retroiluminación.",
     "price": 129,
     "stock": 60,
@@ -55,7 +55,7 @@
   },
   {
     "id": 7,
-    "name": "Lumen Mirrorless Cam",
+    "name": "Cámara mirrorless 4K",
     "description": "Cámara mirrorless con lente 24–70 y grabación 4K.",
     "price": 899,
     "stock": 12,
@@ -64,7 +64,7 @@
   },
   {
     "id": 8,
-    "name": "Harbor Bluetooth Speaker",
+    "name": "Altavoz Bluetooth portátil",
     "description": "Altavoz portátil resistente al agua con 12 h de reproducción.",
     "price": 89,
     "stock": 70,
@@ -73,8 +73,8 @@
   },
   {
     "id": 9,
-    "name": "Sild Tablet 11",
-    "description": "Tablet 11\" con lápiz óptico opcional y 128 GB de almacenamiento.",
+    "name": "Tablet 11\" 128 GB",
+    "description": "Tablet 11\" con lápiz óptico opcional y 128 GB.",
     "price": 479,
     "stock": 28,
     "imageUrl": "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -82,8 +82,8 @@
   },
   {
     "id": 10,
-    "name": "Trail Action Cam",
-    "description": "Cámara de acción 4K resistente a golpes y sumergible hasta 10 m.",
+    "name": "Cámara de acción 4K",
+    "description": "Cámara de acción 4K, resistente a golpes y sumergible hasta 10 m.",
     "price": 249,
     "stock": 33,
     "imageUrl": "https://images.pexels.com/photos/243757/pexels-photo-243757.jpeg?auto=compress&cs=tinysrgb&w=800",

@@ -30,7 +30,7 @@ if (!window.__NS_BOOT__) {
     var link = document.createElement("link");
     link.id = "ns-main-css";
     link.rel = "stylesheet";
-    link.href = nsAsset("assets/css/main.css");
+    link.href = nsAsset("assets/css/main.css") + "?v=3";
     document.head.appendChild(link);
   };
 
