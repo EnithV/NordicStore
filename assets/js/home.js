@@ -1,3 +1,12 @@
+function fotoProducto(p) {
+  var url = String((p && p.imageUrl) || "");
+  if (Number(p && p.id) === 1 || url.indexOf("1087180") !== -1) {
+    url = "assets/images/products/scooter.jpg";
+  }
+  if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) return url;
+  return (typeof nsAsset === "function") ? nsAsset(url) : url;
+}
+
 function tarjetaProducto(p) {
   var stock = Number(p.stock || 0);
   var name = typeof productoNombre === "function" ? productoNombre(p) : p.name;
@@ -8,7 +17,7 @@ function tarjetaProducto(p) {
   var cat = (p.category && p.category.name) || "";
   return (
     '<article class="card product">' +
-      '<div class="thumb"><img src="' + p.imageUrl + '" alt="' + name + '"></div>' +
+      '<div class="thumb"><img src="' + fotoProducto(p) + '" alt="' + name + '"></div>' +
       '<div class="product-body">' +
         '<span class="category">' + cat + "</span>" +
         "<h3>" + name + "</h3>" +

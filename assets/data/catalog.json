@@ -5,7 +5,7 @@
     "description": "Patín eléctrico de 25 km de autonomía, para el trayecto diario.",
     "price": 449,
     "stock": 18,
-    "imageUrl": "https://images.pexels.com/photos/9660956/pexels-photo-9660956.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "imageUrl": "assets/images/products/scooter.jpg",
     "category": { "id": 1, "name": "Mobility" }
   },
   {

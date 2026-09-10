@@ -33,9 +33,10 @@ async function apiDisponible() {
 }
 
 function catalogoUrl() {
-  if (typeof nsAsset === "function") return nsAsset("assets/data/catalog.json");
-  if (typeof urlApp === "function") return urlApp("/assets/data/catalog.json");
-  return "assets/data/catalog.json";
+  var url = "assets/data/catalog.json";
+  if (typeof nsAsset === "function") url = nsAsset(url);
+  else if (typeof urlApp === "function") url = urlApp("/assets/data/catalog.json");
+  return url + "?v=4";
 }
 
 function fetchConTiempo(url, opciones, ms) {

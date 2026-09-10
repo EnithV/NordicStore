@@ -30,7 +30,7 @@ if (!window.__NS_BOOT__) {
     var link = document.createElement("link");
     link.id = "ns-main-css";
     link.rel = "stylesheet";
-    link.href = nsAsset("assets/css/main.css") + "?v=3";
+    link.href = nsAsset("assets/css/main.css") + "?v=4";
     document.head.appendChild(link);
   };
 
@@ -41,7 +41,7 @@ if (!window.__NS_BOOT__) {
         return;
       }
       var s = document.createElement("script");
-      s.src = nsAsset(files[i]);
+      s.src = nsAsset(files[i]) + "?v=4";
       s.onload = function () { next(i + 1); };
       s.onerror = function () { next(i + 1); };
       document.body.appendChild(s);
