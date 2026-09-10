@@ -1,8 +1,5 @@
 function fotoProducto(p) {
   var url = String((p && p.imageUrl) || "");
-  if (Number(p && p.id) === 1 || url.indexOf("1087180") !== -1) {
-    url = "assets/images/products/scooter.jpg";
-  }
   if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) return url;
   return (typeof nsAsset === "function") ? nsAsset(url) : url;
 }

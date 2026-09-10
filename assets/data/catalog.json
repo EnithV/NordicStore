@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "name": "Patinete eléctrico urbano",
-    "description": "Patín eléctrico de 25 km de autonomía, para el trayecto diario.",
+    "name": "Dron con cámara 4K",
+    "description": "Dron plegable con cámara 4K, para foto y video aéreo.",
     "price": 449,
     "stock": 18,
-    "imageUrl": "assets/images/products/scooter.jpg",
+    "imageUrl": "https://images.pexels.com/photos/1087180/pexels-photo-1087180.jpeg?auto=compress&cs=tinysrgb&w=800",
     "category": { "id": 1, "name": "Mobility" }
   },
   {

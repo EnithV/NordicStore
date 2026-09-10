@@ -41,7 +41,7 @@ if (!window.__NS_BOOT__) {
         return;
       }
       var s = document.createElement("script");
-      s.src = nsAsset(files[i]) + "?v=4";
+      s.src = nsAsset(files[i]) + "?v=5";
       s.onload = function () { next(i + 1); };
       s.onerror = function () { next(i + 1); };
       document.body.appendChild(s);

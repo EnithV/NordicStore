@@ -36,7 +36,7 @@ function catalogoUrl() {
   var url = "assets/data/catalog.json";
   if (typeof nsAsset === "function") url = nsAsset(url);
   else if (typeof urlApp === "function") url = urlApp("/assets/data/catalog.json");
-  return url + "?v=4";
+  return url + "?v=5";
 }
 
 function fetchConTiempo(url, opciones, ms) {
